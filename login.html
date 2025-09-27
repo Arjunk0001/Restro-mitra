@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Fauji Dhaba - Admin Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #d4af37;
+            --secondary: #8b0000;
+            --accent: #c19e1c;
+            --dark: #222;
+            --light: #f8f8f8;
+            --success: #28a745;
+            --danger: #dc3545;
+            --info: #17a2b8;
+            --warning: #ffc107;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            --card-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
+                        url('https://images.unsplash.com/photo-1547573854-74d2a71d0826?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') 
+                        no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            width: 100%;
+            max-width: 450px;
+            border: 2px solid var(--primary);
+            text-align: center;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, var(--primary), #f1c40f);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+            border: 3px solid white;
+            margin: 0 auto 20px;
+        }
+
+        h1 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-family: 'Baloo Bhai 2', cursive;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        input:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+        }
+
+        .login-btn {
+            background: linear-gradient(to right, var(--secondary), #a52a2a);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            width: 100%;
+            transition: var(--transition);
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+        }
+
+        .error-message {
+            color: var(--danger);
+            margin-top: 15px;
+            display: none;
+        }
+
+        .admin-info {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">🍛</div>
+        <h1>New Fauji Dhaba</h1>
+        <div class="subtitle">Admin Panel - Secure Login</div>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter admin username" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter admin password" required>
+            </div>
+            
+            <button type="submit" class="login-btn">
+                <i class="fas fa-lock"></i> Login to Admin Panel
+            </button>
+        </form>
+        
+        <div class="error-message" id="errorMessage">
+            <i class="fas fa-exclamation-circle"></i> Invalid username or password
+        </div>
+        
+        <div class="admin-info">
+            <p>Contact system administrator if you've forgotten your credentials</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            
+            if (username === 'admin' && password === 'faujiDhaba2024') {
+               
+                sessionStorage.setItem('authenticated', 'true');
+                
+                // Redirect to admin panel
+                window.location.href = 'admin.html';
+            } else {
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
